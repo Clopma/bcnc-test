@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: Prices API Specification for price related operations
+  description: |-
+    Allows one operations:
+    - get a price based on date and product id
+  version: 1.0-SNAPSHOT
+paths:
+  /price/{productId}:
+    get:
+      summary: Get price
+      description: Get the price of a product based on the parameters
+      operationId: Get prices information
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          schema:
+            type: integer
+          description: The productId
+        - in: query
+          name: applicationDate
+          schema:
+            type: string
+            format: date-time
+          required: true
+          description: Date of the application of the price in UTC
+        - in: query
+          name: brandId
+          schema:
+            type: integer
+          required: true
+          description: Brand identifier
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceResponseDto'
+        404:
+          description: Not Found
+components:
+  schemas:
+    PriceResponseDto:
+      type: object
+      properties:
+        productId:
+          type: integer
+          example: 30
+        price:
+          type: number
+          format: double
+          example: 23.43
+        brandId:
+          type: integer
+          example: 1
+        priceList:
+          type: integer
+          example: 3
+        startDate:
+          type: string
+          format: date-time
+          example: 2024-11-10T19:10:10Z
+        endDate:
+          type: string
+          format: date-time
+          example: 2025-11-10T19:10:10Z
+    ErrorDto:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          example: Imposible to divide by 0
+        timestamp:
+          type: string
+          format: date-time
+          example: 2024-11-10T19:10:10Z
