@@ -35,7 +35,7 @@ public class PricesServiceImpl implements PricesService {
     @Override
     public PriceResponseDto getPrice(Integer productId, OffsetDateTime applicationDate, Integer brandId) {
 
-        Brand brand = brandRepository.findById(brandId.longValue()).orElseThrow(() -> new BusinessException("Brand not found for id " + brandId, HttpStatus.BAD_REQUEST));
+        Brand brand = brandRepository.findById(brandId.longValue()).orElseThrow(() -> new BusinessException("Brand not found for id " + brandId, HttpStatus.NOT_FOUND));
 
         Price price = priceRepository.findTopByBrandEqualsAndStartDateLessThanEqualAndEndDateGreaterThanEqualAndProductIdEqualsOrderByPriorityDesc(
                 brand, applicationDate, applicationDate, productId).orElseThrow(() ->

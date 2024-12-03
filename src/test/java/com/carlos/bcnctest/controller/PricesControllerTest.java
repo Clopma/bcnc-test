@@ -47,7 +47,7 @@ public class PricesControllerTest {
         ResponseEntity<PriceResponseDto> response =
                 restTemplate.getForEntity("http://localhost:"+port+"/api/price/35455?applicationDate=2020-06-14T10:12:28Z", PriceResponseDto.class);
 
-        assertTrue(HttpStatus.NOT_FOUND.isSameCodeAs(response.getStatusCode()));
+        assertTrue(HttpStatus.BAD_REQUEST.isSameCodeAs(response.getStatusCode()));
     }
 
 

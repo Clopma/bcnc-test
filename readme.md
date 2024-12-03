@@ -2,7 +2,8 @@ Spring Boot Java 19 application that exposes a REST api consisting of one endpoi
 
 * GET /api/prices (gets the price based on application date, product id and brand id)
 
-Run the application by running BCNCTestApplication.java, no parameters required.
+Needs to run a maven clean install to generate the controller api.
+Then just run the application by running BCNCTestApplication.java, no parameters required, default profile.
 
 A Open API codegen generated API will be exposed at localhost:8080/api/ and can be accessed through SwaggerUI on 
 http://localhost:8080/api/swagger-ui/index.html
